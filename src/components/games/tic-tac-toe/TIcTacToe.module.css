@@ -1,0 +1,12 @@
+.root{
+
+}
+.borderRow {
+  @apply border-b-4;
+}
+.button{
+ @apply p-4;
+}
+.borderCol {
+  @apply border-r-4;
+}
