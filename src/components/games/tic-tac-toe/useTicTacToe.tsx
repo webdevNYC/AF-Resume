@@ -10,10 +10,8 @@ interface TicTacToeProps {
   disabled?: boolean;
   winnerPlayer: string;
   nextPlayer: boolean;
-
   handleClick: (event: any) => void;
   handleStart: () => void;
-
   handleReset:  () => void;
 }
 
@@ -24,11 +22,11 @@ const useTicTacToe = (): TicTacToeProps => {
   const [winnerPlayer, setWinnerPlayer] = useState('');
 
   const handleStart = () => {
+    setBoard(Array(9).fill(null))
     setStatus('game-on');
   };
   const handleReset = () => {
     setBoard(Array(9).fill(null))
-    setStatus('new-game');
   };
   const handleClick = (event: any) => {
     const currentBoard = [...board];
@@ -37,13 +35,16 @@ const useTicTacToe = (): TicTacToeProps => {
     setNextPlayer(!nextPlayer);
     setBoard(currentBoard);
     const winner = checkWinner(currentBoard, currentPlayer);
-
+    const isDraw = currentBoard.every(function(v) { return v !== null; });
+    
+    if (isDraw) {
+      setStatus('game-draw');
+    }
     if (winner) {
       setStatus('game-over');
       setWinnerPlayer(currentPlayer);
     }
   };
-
   return { board, status, winnerPlayer, nextPlayer, handleStart, handleClick, handleReset };
 };
 

@@ -20,6 +20,23 @@ const StartGame = (props: any) => {
     </>
   );
 };
+const EndGame = (props: any) => {
+  const { board, onClick } = props;
+  return (
+    <>
+      <BoardGame board={board} disabled />
+      <button
+        type="button"
+        defaultValue={0}
+        className="w-32 p-3 bg-green-300 hover:bg-green-100"
+        onClick={onClick}
+      >
+        {" "}
+        Start Game
+      </button>
+    </>
+  );
+};
 export default function TicTacToeGame() {
   const {
     board,
@@ -41,24 +58,28 @@ export default function TicTacToeGame() {
         <div>
           Next Player: {nextPlayer ? "0" : "X"}
           <BoardGame board={board} onClick={handleClick} />
+          <button
+            type="button"
+            defaultValue={0}
+            className="w-32 p-3 ml-3 bg-yellow-300 hover:bg-yellow-100"
+            onClick={handleReset}
+          >
+            {" "}
+            Reset Game
+          </button>
         </div>
       )}
       {status === "game-over" && (
         <div>
           <h1>Congratulations {winnerPlayer} you won! </h1>
-          <BoardGame board={board} />
+          <EndGame board={board} onClick={handleStart} />
         </div>
       )}
-      {status !== "new-game" && (
-        <button
-          type="button"
-          defaultValue={0}
-          className="w-32 p-3 ml-3 bg-yellow-300 hover:bg-yellow-100"
-          onClick={handleReset}
-        >
-          {" "}
-          Reset Game
-        </button>
+      {status === "game-draw" && (
+        <div>
+          <h1>Draw Game - Try again ;O) </h1>
+          <EndGame board={board} onClick={handleStart} />
+        </div>
       )}
     </div>
   );
