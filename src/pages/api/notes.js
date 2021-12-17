@@ -32,13 +32,13 @@ function handler(req, res) {
         const newData = data.map(el => (el.slug === slug ? { ...newNote } : el))
 
         fs.writeFileSync(filePath, JSON.stringify(newData));
-        res.status(201).json({ message: 'Success!', updatedData: data });
-
+        res.status(201).json({ ...newData });
     }
     else {
         const filePath = buildNotesPath();
         const data = extractNotes(filePath);
         res.status(200).json({ ...data });
+        //console.log('handler', data)
     }
 }
 
