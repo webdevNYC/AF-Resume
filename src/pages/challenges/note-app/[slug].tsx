@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { GetStaticPaths } from "next";
 import NoteEdit from "../../../components/note-app/NoteEdit";
 import {
