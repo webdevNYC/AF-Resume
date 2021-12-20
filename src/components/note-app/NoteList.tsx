@@ -14,7 +14,7 @@ const NoteList: FC<Props> = ({ notes }) => {
   });
 
   return (
-    <ul>
+    <ul role="list" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {notesOrderBy?.map((note: NoteItemType, idx) => (
         <NoteItem {...note} key={idx} />
       ))}
