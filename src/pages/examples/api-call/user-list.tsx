@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ReactElement } from 'react';
+import React, { useState, useEffect } from 'react';
 import { fetchUsers } from './fetchUsers';
 
 type UserType ={
@@ -6,7 +6,7 @@ type UserType ={
     name: string,
     email: string
 }
-const UserList = ():ReactElement<UserType> => {
+const UserList = ():JSX.Element => {
   const [users, setUsers] = useState<UserType[]>([]);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const UserList = ():ReactElement<UserType> => {
     <div>
       <h2>User List</h2>
       <ul>
-        {users.map((user) => (
+        {users.map((user:UserType):JSX.Element => (
           <li key={user.id}>{user.name}</li>
         ))}
       </ul>
